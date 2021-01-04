@@ -3,8 +3,8 @@
   opacity: 0;
   -webkit-animation: apparition 1s linear forwards;
   animation: apparition 1s linear forwards;
-  -webkit-animation-delay: 2s;
-  animation-delay: 2s;
+  -webkit-animation-delay: 1s;
+  animation-delay: 1s;
 }
 
 .loader {
@@ -31,8 +31,8 @@
   z-index: -1;
   -webkit-animation: disparition 1s linear forwards;
   animation: disparition 1s linear forwards;
-  -webkit-animation-delay: 2s;
-  animation-delay: 2s;
+  -webkit-animation-delay: 1s;
+  animation-delay: 1s;
 }
 
 .loader__text {
@@ -171,5 +171,19 @@
 
 .bg-light {
   background-color: #f3e9f1 !important;
+}
+
+.btn-primary {
+  background-color: #9356dc;
+  border-color: #9356dc;
+}
+
+.btn-primary:focus, .btn-primary:hover {
+  background-color: #6f42a7;
+  border-color: #6f42a7;
+}
+
+.card {
+  background-color: #ececec;
 }
 /*# sourceMappingURL=style.css.map */

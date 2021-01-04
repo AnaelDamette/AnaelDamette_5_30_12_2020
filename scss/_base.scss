@@ -3,8 +3,8 @@
     opacity: 0;
     -webkit-animation: apparition 1s linear forwards;
     animation: apparition 1s linear forwards;
-    -webkit-animation-delay: 2s;
-    animation-delay: 2s;
+    -webkit-animation-delay: 1s;
+    animation-delay: 1s;
   }
 .loader {
     display: flex;
@@ -20,8 +20,8 @@
     z-index: -1;
     -webkit-animation: disparition 1s linear forwards;
     animation: disparition 1s linear forwards;
-    -webkit-animation-delay: 2s;
-    animation-delay: 2s;
+    -webkit-animation-delay: 1s;
+    animation-delay: 1s;
     &__text {
         margin-bottom: 20px;
         font-size: 40px;
@@ -133,4 +133,15 @@
 }
 .bg-light {
     background-color: $couleur-secondaire!important;
+}
+.btn-primary {
+    background-color: $couleur-primaire;
+    border-color: $couleur-primaire;
+}
+.btn-primary:focus, .btn-primary:hover {
+    background-color: $couleur-primaire-alt;
+    border-color: $couleur-primaire-alt;
+}
+.card {
+    background-color: $couleur-background;
 }

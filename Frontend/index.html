@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <meta description
+        content="Les meubles d'Orinoco site de vente en ligne, on y retrouve des caméras vintage, des ours en peluches et des meubles artisanaux en bois">
+    <meta author content="Damette Anael">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/b52a7bdb12.js" crossorigin="anonymous"></script>
+    <script src='./script.js'></script>
+    <title>Meuble d'Orinoco, vente en ligne</title>
+</head>
+
+<body>
+    <!-- Loader -->
+    <div class="loader">
+        <div class="loader__text">Chargement ...</div>
+        <div class="loader__spin"><span></span></div>
+    </div>
+    <div class="body-index">
+        <!--header-->
+        <header class="container bg-light">
+            <!-- navigation-->
+            <nav class="navbar navbar-light bg-light navbar-expand-md ">
+                <a class="navbar-brand" href="index.html"><img src="./image/logo_orinoco.png"
+                        alt="Le logo d'orinoco"></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=#navbarSupportedContent
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-0 ">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="index.html">Accueil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Meubles <i class="fas fa-chair"></i></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="panier.html">Panier <i class="fas fa-shopping-cart"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <main>
+            <section class="container">
+                <article id='article' class="row d-flex justify-content-between">
+                    <!--<div class="card col-md-5 p-2 m-2 col-xs-12" style="width: 18rem;">
+                        <img class="card-img-top" src="#" alt="Magnifique table d'appoint chêne massif">
+                        <div class="card-body">
+                            <h5 class="card-title">Table d'apoint chêne massif</h5>
+                            <p class="card-text text-justify">Cette table en chêne massif. Confort et modernité, les deux points essentiels du design nordique sont réunis en une seule et belle réalisation.</p>
+                            <a href="#" class="btn btn-primary">Mettre au panier <i class="fas fa-shopping-cart"></i></a>
+                        </div>
+                    </div>
+                    <div class="card col-md-5 p-2 m-2 col-xs-12" style="width: 18rem;">
+                        <img class="card-img-top" src="#" alt="table à manger chêne brut">
+                        <div class="card-body">
+                            <h5 class="card-title">Table à manger chêne brut</h5>
+                            <p class="card-text">Table à manger en bois brut. Design ancien et brut elle lie parfaitement le bois et l'acier, construction solide permettant de mettre 4 à 8 convives sur la même table.</p>
+                            <a href="#" class="btn btn-primary">Mettre au panier <i class="fas fa-shopping-cart"></i></a>
+                        </div>
+                    </div>
+                    <div class="card col-md-5 p-2 m-2 col-xs-12" style="width: 18rem;">
+                        <img class="card-img-top" src="#" alt="Chaise ancienne bois brut">
+                        <div class="card-body">
+                            <h5 class="card-title">Chaise ancienne</h5>
+                            <p class="card-text"> Chaise ancienne bois brut, polyvalente. Son designe permet de l'associer avec n'importe quel type de décoration. Fabriqué en chêne elle conviendra tout aussi bien à une utilisation interieur qu'extérieur.</p>
+                            <a href="#" class="btn btn-primary">Mettre au panier <i class="fas fa-shopping-cart"></i></a>
+                        </div>
+                    </div>
+                    <div class="card col-md-5 p-2 m-2 col-xs-12" style="width: 18rem;">
+                        <img class="card-img-top" src="#" alt="Table basse chêne massif">
+                        <div class="card-body">
+                            <h5 class="card-title">Table basse chêne massif</h5>
+                            <p class="card-text">Table basse chêne massif réalisé avec un design scandinave. Elle créera une ambiance chaleureuse dans votre intérieur, le design scandinave a un style épuré qui vous permettra toutes les fantaisies</p>
+                            <a href="#" class="btn btn-primary">Mettre au panier <i class="fas fa-shopping-cart"></i></a>
+                        </div>
+                    </div>
+                    <div class="card col-md-5 p-2 m-2 col-xs-12" style="width: 18rem;">
+                        <img class="card-img-top" src="#" alt="Bastaing en chêne brut">
+                        <div class="card-body">
+                            <h5 class="card-title">Bastaing en chêne brut</h5>
+                            <p class="card-text">Bastaing d'excellente qualité en chêne brut, ces poutres feront d'excellente charpente et donnerons un aspect vintage à votre maison.</p>
+                            <a href="#" class="btn btn-primary">Mettre au panier <i class="fas fa-shopping-cart"></i></a>
+                        </div>
+                    </div>-->
+                </article>
+            </section>
+        </main>
+        <!--footer-->
+        <footer class="container footer navbar navbar-light bg-light">
+            <a class="navbar-brand" href="index.html"><img src="./image/logo_orinoco.png" alt="Le logo d'orinoco"></a>
+            <div class="col-12">
+                <ul class="nav navbar-nav mr-auto text-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="mailto:lemail.adresse.com">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Mentions légales</a>
+                    </li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+</body>
+
+</html>

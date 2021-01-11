@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <meta description
+        content="Le panier d'Orinoco site de vente en ligne, on y retrouve des caméras vintage, des ours en peluches et des meubles artisanaux en bois">
+    <meta author content="Damette Anael">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/b52a7bdb12.js" crossorigin="anonymous"></script>
+    <script src='./script.js'></script>
+    <title>Le panier d'Orinoco, vente en ligne</title>
+</head>
+
+<body>
+    <!-- Loader -->
+    <div class="loader">
+        <div class="loader__text">Chargement ...</div>
+        <div class="loader__spin"><span></span></div>
+    </div>
+    <div class="body-index">
+        <!--header-->
+        <header>
+            <!-- navigation-->
+            <nav class="navbar navbar-light bg-light navbar-expand-md ">
+                <a class="navbar-brand" href="index.html"><img src="./image/logo_orinoco.png"
+                        alt="Le logo d'orinoco"></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=#navbarSupportedContent
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-0 ">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="index.html">Accueil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="furniture.html">Meubles <i class="fas fa-chair"></i></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="panier.html">Panier <i class="fas fa-shopping-cart"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <!-- Page -->
+        <main>
+            <section class="container">
+                <article class="row d-flex justify-content-between">
+                    <div class="card col-12 p-2 m-2" style="width: 18rem;">
+                        <img class="card-img-top" src="#" alt="#">
+                        <div class="card-body">
+                            <h5 class="card-title">Les Meubles</h5>
+                            <p class="card-text">Article mis dans le panier</p>
+                            <a href="furniture.html" class="btn btn-primary">paiement</a>
+                        </div>
+                    </div>
+                </article>
+            </section>
+        </main>
+        <!--footer-->
+        <footer class="footer navbar navbar-light bg-light">
+            <a class="navbar-brand" href="index.html"><img src="./image/logo_orinoco.png" alt="Le logo d'orinoco"></a>
+            <div class="col-12">
+                <ul class="nav navbar-nav mr-auto text-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="mailto:lemail.adresse.com">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Mentions légales</a>
+                    </li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+</body>
+
+</html>

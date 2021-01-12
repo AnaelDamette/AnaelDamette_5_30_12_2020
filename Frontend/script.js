@@ -42,7 +42,7 @@ async function showAllMeuble(){
 
         // Mise en place du texte sous l'image dans la carte
         let bodyCard = document.createElement('div');
-        cardMeuble.appendChild(bodyCard)
+        cardMeuble.appendChild(bodyCard);
         bodyCard.setAttribute('class', 'cord-body');
 
          // mise en place du titre
@@ -55,9 +55,60 @@ async function showAllMeuble(){
             bodyCard.appendChild(btnCard);
             btnCard.setAttribute('class', 'btn btn-primary')
             btnCard.textContent = 'Voir ' + meuble.name;
-            btnCard.setAttribute('href', 'produit.html?id='+ meuble._id)
+            btnCard.setAttribute('href', 'article.html?id='+ meuble._id)
         
 
     })
 };
 showAllMeuble();
+function getOneMeuble(){
+
+    //récupération de l'id de l'objet selectionné
+    let id = location.search.substring();
+    console.log(id)
+
+
+        // // construction carte pour le produit meuble
+        // let cardProduitMeuble = document.createElement("div");
+        // cardProduitMeuble.setAttribute('class', 'card col-12 p-2 m-2');
+        // document.getElementById("produitMeuble").appendChild(cardProduitMeuble);
+        
+        // //mise en place de l'image dans la carte
+        // let imageProduitCard = document.createElement('img');
+        // cardProduitMeuble.appendChild(imageProduitCard);
+        // imageProduitCard.setAttribute('src', meuble.imageUrl);
+        // imageProduitCard.setAttribute("class", 'card-img-top');
+        // imageProduitCard.setAttribute('alt', 'Une Image de notre meuble : '+ meuble.name);
+
+        // //mise en place du texte sous l'image
+        // let bodyProduitCard = document.createElement('div');
+        // cardProduitMeuble.appendChild(bodyProduitCard);
+        // bodyProduitCard.setAttribute("class", 'cord-body');
+
+        // //mise en place du titre
+        // let titleProduitCard = document.createElement('h5');
+        // bodyProduitCard.appendChild(titleProduitCard);
+        // titleProduitCard.setAttribute('class', 'cord-title');
+        // titleProduitCard.textContent = meuble.name;
+
+        // //mise en place de la description
+        // let descriptionProduitCard = document.createElement('p');
+        // bodyProduitCard.appentChild(descriptionProduitCard);
+        // descriptionProduitCard.setAttribute('class', 'card-text text-justify');
+        // descriptionProduitCard.textContent = meuble.description;
+
+        // //mise en pace du prix
+        // let prixProduitCard = document.createElement('p');
+        // bodyProduitCard.appendChild(prixProduitCard);
+        // prixProduitCard.setAttribute('class', 'card-text text-justify' );
+        // prixProduitCard.textContent = meuble.prix;
+
+        // //mise en place du bouton
+        // let btnProduitCard = document.createElement("a")
+        // bodyProduitCard.appendChild(btnProduitCard);
+        // btnProduitCard.setAttribute('class', 'btn btn-primary')
+        // btnProduitCard.textContent = 'Mettre au panier';
+
+
+};
+getOneMeuble()

@@ -7,9 +7,9 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <meta description
-        content="Les meubles d'Orinoco site de vente en ligne, on y retrouve des caméras vintage, des ours en peluches et des meubles artisanaux en bois">
+        content="Le panier d'Orinoco site de vente en ligne, on y retrouve des caméras vintage, des ours en peluches et des meubles artisanaux en bois">
     <meta author content="Damette Anael">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
@@ -20,8 +20,8 @@
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/b52a7bdb12.js" crossorigin="anonymous"></script>
-    <script src='./script.js'></script>
-    <title>Meuble d'Orinoco, vente en ligne</title>
+    <script type="module" src='../script.js'></script>
+    <title>Le panier d'Orinoco, vente en ligne</title>
 </head>
 
 <body>
@@ -32,10 +32,10 @@
     </div>
     <div class="body-index">
         <!--header-->
-        <header class="container bg-light">
+        <header>
             <!-- navigation-->
             <nav class="navbar navbar-light bg-light navbar-expand-md ">
-                <a class="navbar-brand" href="index.html"><img src="./image/logo_orinoco.png"
+                <a class="navbar-brand" href="../index.html"><img src="../image/logo_orinoco.png"
                         alt="Le logo d'orinoco"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=#navbarSupportedContent
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,36 +44,34 @@
                 <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-0 ">
                         <li class="nav-item active">
-                            <a class="nav-link" href="index.html">Accueil</a>
+                            <a class="nav-link" href="../index.html">Accueil</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="index.html">Meubles <i class="fas fa-chair"></i></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="panier.html">Panier <i class="fas fa-shopping-cart"></i>
+                            <a class="nav-link" href="panier.html">Panier<span>0</span> <i class="fas fa-shopping-cart"></i>
                             </a>
                         </li>
                     </ul>
                 </div>
             </nav>
         </header>
+        <!-- Page -->
         <main>
             <section class="container">
-                <article class="row mbt-2 mr-0 d-flex justify-content-between" id='produitMeuble'>
-                    <!-- <div class="card col-12 p-2 m-2" style="width: 18rem;">
-                        <img class="card-img-top" src="./JWDP5-master/images/meuble_table_dappoint.jpg" alt="Magnifique table d'appoint chêne massif">
+                <article class="row d-flex justify-content-between">
+                    <div class="card col-12 p-2 m-2" style="width: 18rem;">
+                        <img class="card-img-top" src="#" alt="#">
                         <div class="card-body">
-                            <h5 class="card-title">Table d'apoint chêne massif</h5>
-                            <p class="card-text text-justify">Cette table en chêne massif. Confort et modernité, les deux points essentiels du design nordique sont réunis en une seule et belle réalisation.</p>
-                            <a href="#" class="btn btn-primary">Mettre au panier <i class="fas fa-shopping-cart"></i></a>
+                            <h5 class="card-title">Les Meubles</h5>
+                            <p class="card-text">Article mis dans le panier</p>
+                            <a href="furniture.html" class="btn btn-primary">paiement</a>
                         </div>
-                    </div> -->
+                    </div>
                 </article>
             </section>
         </main>
         <!--footer-->
-        <footer class="container footer navbar navbar-light bg-light">
-            <a class="navbar-brand" href="index.html"><img src="./image/logo_orinoco.png" alt="Le logo d'orinoco"></a>
+        <footer class="footer navbar navbar-light bg-light">
+            <a class="navbar-brand" href="../index.html"><img src="../image/logo_orinoco.png" alt="Le logo d'orinoco"></a>
             <div class="col-12">
                 <ul class="nav navbar-nav mr-auto text-center">
                     <li class="nav-item">

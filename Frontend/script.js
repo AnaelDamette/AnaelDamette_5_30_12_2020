@@ -27,7 +27,7 @@ async function showAllMeuble() {
     const meubles = await getAllMeuble;
     meubles.forEach(meuble => {
 
-        console.log('rentrée dans la fonction');
+        console.log('Rentrer dans la fonction showAllMeuble');
         // construction carte pour les meubles
         let cardMeuble = document.createElement("div");
         cardMeuble.setAttribute('class', 'card col-md-5 p-2 m-2 col-xs-12');
@@ -117,12 +117,36 @@ function showOneMeuble(produitMeuble) {
     descriptionProduitCard.setAttribute('class', 'card-text text-justify');
     descriptionProduitCard.textContent = produitMeuble.description;
 
-    // // //mise en pace du prix
+    //mise en pace du prix
     let prixProduitCard = document.createElement('p');
     bodyProduitCard.appendChild(prixProduitCard);
     prixProduitCard.setAttribute('class', 'card-text text-justify');
     prixProduitCard.textContent = produitMeuble.price / 1000 + "€";
 
+    //mise en place de l'option
+    let optionVarnish = document.createElement('form');
+    bodyProduitCard.appendChild(optionVarnish);
+    let titleOption = document.createElement('h5');
+    optionVarnish.appendChild(titleOption);
+    optionVarnish.textContent = "Vernis";
+    let optionVernis = document.createElement('select');
+    optionVarnish.appendChild(optionVernis);
+    optionVernis.setAttribute('id', 'vernis');
+    optionVernis.setAttribute('name', 'varnish');
+
+    //création de la boucle foreach
+    let selectionVernis= produitMeuble.varnish;
+    selectionVernis.forEach(colorVernis => {
+        console.log(typeof(colorVernis))
+         //pour chaque colorVernis on créer l'élément option
+        let couleurVernis = document.createElement("option");
+         //On le place en enfant de optionVernis
+        optionVernis.appendChild(couleurVernis);
+        //on lui attribus la value = colorVernis
+        couleurVernis.setAttribute('value', colorVernis);
+        couleurVernis.textContent = colorVernis;
+        console.log(colorVernis)});
+    
     //mise en place du bouton
     let btnProduitCard = document.createElement("a")
     bodyProduitCard.appendChild(btnProduitCard);

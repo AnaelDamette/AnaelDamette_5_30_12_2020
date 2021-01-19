@@ -186,4 +186,12 @@
 .card {
   background-color: #ececec;
 }
+
+form {
+  margin-bottom: 1em;
+}
+
+#vernis {
+  margin-left: 1em;
+}
 /*# sourceMappingURL=style.css.map */

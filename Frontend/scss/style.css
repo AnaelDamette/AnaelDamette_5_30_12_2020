@@ -194,4 +194,24 @@ form {
 #vernis {
   margin-left: 1em;
 }
+
+#btnRecycle {
+  background-color: #99e2d0;
+  width: 200px;
+  color: #353535;
+  padding: 0;
+}
+
+#btnRecycle:hover {
+  background-color: #71baa8;
+  color: #ffff;
+}
+
+#btnRecycle > i {
+  margin-right: 1em;
+}
+
+.btn-supp:hover, .btn-supp:focus {
+  background-color: #c4c4c4;
+}
 /*# sourceMappingURL=style.css.map */

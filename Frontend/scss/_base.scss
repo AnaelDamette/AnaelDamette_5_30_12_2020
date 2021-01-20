@@ -151,3 +151,20 @@ form {
 #vernis {
     margin-left : 1em;
 }
+
+#btnRecycle {
+    background-color: $couleur-tertiaire;
+    width: 200px;
+    color: $couleur-font;
+}
+#btnRecycle:hover{
+    background-color: $couleur-tertiaire - 40;
+    color: $couleur-font-alt;
+}
+#btnRecycle > i {
+    margin-right: 1em;
+}
+
+.btn-supp:hover, .btn-supp:focus {
+    background-color: $couleur-background - 40;
+}

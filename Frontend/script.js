@@ -27,7 +27,6 @@ async function showAllMeuble() {
     const meubles = await getAllMeuble;
     meubles.forEach(meuble => {
 
-        console.log('Rentrer dans la fonction showAllMeuble');
         // construction carte pour les meubles
         let cardMeuble = document.createElement("div");
         cardMeuble.setAttribute('class', 'card col-md-5 p-2 m-2 col-xs-12');
@@ -64,9 +63,7 @@ showAllMeuble();
 
 //récupération de l'id de l'objet selectionné
 let id = location.search.substring(1);
-console.log(id)
 var urlMeuble = url + "/" + id;
-console.log(urlMeuble)
 //récupération de l'objet par l'api
 let getOneMeuble = new Promise((resolve, reject) => {
     //initialisation lien server
@@ -135,23 +132,40 @@ function showOneMeuble(produitMeuble) {
     optionVernis.setAttribute('name', 'varnish');
 
     //création de la boucle foreach
-    let selectionVernis= produitMeuble.varnish;
+    let selectionVernis = produitMeuble.varnish;
     selectionVernis.forEach(colorVernis => {
-        console.log(typeof(colorVernis))
-         //pour chaque colorVernis on créer l'élément option
+        //pour chaque colorVernis on créer l'élément option
         let couleurVernis = document.createElement("option");
-         //On le place en enfant de optionVernis
+        //On le place en enfant de optionVernis
         optionVernis.appendChild(couleurVernis);
         //on lui attribus la value = colorVernis
         couleurVernis.setAttribute('value', colorVernis);
         couleurVernis.textContent = colorVernis;
-        console.log(colorVernis)});
-    
+    });
+
     //mise en place du bouton
     let btnProduitCard = document.createElement("a")
     bodyProduitCard.appendChild(btnProduitCard);
     btnProduitCard.setAttribute('class', 'btn btn-primary')
+    btnProduitCard.setAttribute('id', 'setLocalStorage')
     btnProduitCard.textContent = 'Mettre au panier';
-
-
 };
+ //cration bouton recycler
+let recyclePanier = document.getElementById("btnRecycle");
+console.log(recyclePanier);
+//déclenchement bouton recycle uniquement sur la page panier
+if (recyclePanier == true) {
+    console.log("prêt a enlevé le panier !! ");
+    recyclePanier.addEventListener('click', () => {
+        localStorage.clear();
+    })
+}
+//création bouton addtocart
+let addToCart = document.getElementById('setLocalStorage');
+//déclenchement bouton addtocart uniquement sur la page produit
+if (addToCart == true) {
+    console.log("le bouton existe");
+    addToCart.addEventListener('click', () => {
+        console.log("bouton add to cart")
+    })
+}

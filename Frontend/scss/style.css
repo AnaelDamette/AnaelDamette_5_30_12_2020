@@ -191,7 +191,7 @@ form {
   margin-bottom: 1em;
 }
 
-#vernis {
+.formulaireProduit {
   margin-left: 1em;
 }
 
@@ -199,7 +199,6 @@ form {
   background-color: #99e2d0;
   width: 200px;
   color: #353535;
-  padding: 0;
 }
 
 #btnRecycle:hover {

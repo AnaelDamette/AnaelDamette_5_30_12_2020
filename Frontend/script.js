@@ -9,6 +9,7 @@ class meuble {
         this.quantity = quantity;
     }
 }
+let article;
 // création de la fonction : obtenir les meubles
 //variable nouvelle promesse
 let getAllMeuble = new Promise((resolve, reject) => {
@@ -205,13 +206,12 @@ if (pageArticle) {
                 console.log("le bouton existe");
                 let vernis = document.getElementById("vernis").value;
                 console.log("bouton add to cart")
-                let article = new meuble(produitMeuble.name, produitMeuble.price / 1000, produitMeuble.imageUrl, vernis, 0);
+                article = new meuble(produitMeuble.name, produitMeuble.price / 1000, produitMeuble.imageUrl, vernis, 0);
                 console.log(Number.isInteger(valeurQuantiteProduit));
                 console.log(valeurQuantiteProduit);
                 console.log(valeurQuantiteProduit > 0);
                 if (Number.isInteger(valeurQuantiteProduit) == true && valeurQuantiteProduit > 0) {
                     setItems(article);
-                    //cartNumbers();
                 } else { alert("votre quantité doit être supérieur à zéro et être entière.") }
             });
         }
@@ -238,18 +238,6 @@ function onLoadFunction() {
         document.querySelector('.cart span').textContent = 0;
     }
 }
-/*fonctionnalité : nombre d'objet dans le panier
-function cartNumbers() {
-    let productNumbers = localStorage.getItem('cartNumbers');
-    productNumbers = parseInt(productNumbers);
-
-    if (productNumbers) {
-        localStorage.setItem('cartNumbers', productNumbers + 1);
-        document.querySelector('.cart span').textContent = productNumbers + 1;
-    } else {
-        
-    }
-}*/
 // Fonction : mettres les articles dans le local storage
 function setItems(article) {
     let cartItems = localStorage.getItem('articleInCart');
@@ -280,4 +268,58 @@ function setItems(article) {
     //on ajoute au local storage notre nouvel articleInCart
     localStorage.setItem('articleInCart', JSON.stringify(cartItems));
 }
+
+// fONCTION GetPanier(), on récupère les objets contenu dans le locale storage pour les afficher
+let pagePanier = document.getElementById("cardBodyPanier");
+if (pagePanier) { getPanier() } //appel de la fonction uniquement sur la page panier
+
+function getPanier() { //construction du panier 
+    //récupération du local Storatge
+    let cartItems = localStorage.getItem('articleInCart');
+    cartItems = JSON.parse(cartItems);
+    
+    //création du tableau avec les objets du local storage
+    var tableauItems = Object.keys(cartItems).map(function(key) { return cartItems[key];});
+
+    // fonction affichage dans le panier des articles du local storage
+    tableauItems.forEach(cartItems => {
+
+        //création de la div contenant toutes les informations d'un article
+        let cardBodyPanier = document.createElement('div');
+        cardBodyPanier.setAttribute('class', 'row justify-content-between border border-dark');
+        document.getElementById('cardBodyPanier').insertBefore(cardBodyPanier, document.getElementById('boutonPaiement'));
+
+        //création de la case Nom Meuble de l'article
+        let nomMeubleItem = document.createElement("div");
+        nomMeubleItem.setAttribute('class', 'nomMeuble col-7 border-right border-dark');
+        cardBodyPanier.appendChild(nomMeubleItem);
+
+        // mise en place du nom du meuble
+        let textMeuble = document.createElement("div");
+        nomMeubleItem.appendChild(textMeuble)
+        textMeuble.textContent = cartItems.name + ' Vernis : '+ cartItems.selectVarnish;
+        textMeuble.setAttribute("class" , "align")
+        
+        // Mise en place de l'image
+        let imgMeuble = document.createElement('img');
+        nomMeubleItem.appendChild(imgMeuble);
+        imgMeuble.setAttribute("src", cartItems.imageUrl);
+        imgMeuble.setAttribute("alt", 'une Image de notre meuble : ' + cartItems.name);
+        imgMeuble.setAttribute('class', "imagePanier")
+
+        // mise en place du prix
+        let prixMeubleItem = document.createElement("div");
+        prixMeubleItem.setAttribute("class", "col-2 border-right align border-dark");
+        prixMeubleItem.textContent = cartItems.price + ' €';
+        cardBodyPanier.appendChild(prixMeubleItem);
+        
+        // mise en place de la quantité
+        let supprimerMeubleItem = document.createElement('div');
+        supprimerMeubleItem.setAttribute('class', 'quantite col-3 align ');
+        supprimerMeubleItem.innerHTML = '<i class="quantityPanier fas fa-arrow-alt-circle-left"></i>' + cartItems.quantity+ '<i class="quantityPanier fas fa-arrow-alt-circle-right"></i>' + '<i class="quantityPanier fas fa-times-circle"></i>';
+        cardBodyPanier.appendChild(supprimerMeubleItem);
+
+    });
+}
+
 onLoadFunction()

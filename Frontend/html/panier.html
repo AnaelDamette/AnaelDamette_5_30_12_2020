@@ -47,7 +47,8 @@
                             <a class="nav-link" href="./index.html">Accueil</a>
                         </li>
                         <li class="nav-item cart">
-                            <a class="nav-link" href="panier.html">Panier<span>0</span> <i class="fas fa-shopping-cart"></i>
+                            <a class="nav-link" href="panier.html">Panier<span>0</span> <i
+                                    class="fas fa-shopping-cart"></i>
                             </a>
                         </li>
                     </ul>
@@ -59,15 +60,18 @@
             <section class="container">
                 <article class="row d-flex justify-content-between">
                     <div class="card col-12 p-2 m-2" style="width: 18rem;">
-                        <button class="btn btn-secondary" id="btnRecycle"><i class="fas fa-recycle"></i>Vider le Panier</button>
-                        <div class="card-body">
+                        <a href="panier.html">
+                            <button class="btn btn-secondary" id="btnRecycle"><i class="fas fa-recycle"></i>Vider le
+                                Panier</button>
+                        </a>
+                        <div class="card-body" id="cardBodyPanier">
                             <h5 class="card-title">Mon panier</h5>
                             <div class="row justify-content-between border border-dark">
                                 <div class=" col-7 border-right border-dark"> Nom Meuble</div>
-                                <div class="col-3 border-right border-dark"> Prix Meuble</div>
-                                <div class="col-2 btn-supp">Supprimer article</div>
+                                <div class="col-2 border-right border-dark"> Prix Meuble</div>
+                                <div class="col-3 ">Quantité</div>
                             </div>
-                            <a href="furniture.html" class="btn btn-primary mt-2">paiement</a>
+                            <a href="furniture.html" class="btn btn-primary mt-2" id="boutonPaiement">paiement</a>
                         </div>
                     </div>
                 </article>
@@ -75,7 +79,8 @@
         </main>
         <!--footer-->
         <footer class="footer navbar navbar-light bg-light">
-            <a class="navbar-brand" href="./index.html"><img src="../image/logo_orinoco.png" alt="Le logo d'orinoco"></a>
+            <a class="navbar-brand" href="./index.html"><img src="../image/logo_orinoco.png"
+                    alt="Le logo d'orinoco"></a>
             <div class="col-12">
                 <ul class="nav navbar-nav mr-auto text-center">
                     <li class="nav-item">

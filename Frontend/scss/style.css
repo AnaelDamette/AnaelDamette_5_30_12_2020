@@ -210,7 +210,44 @@ form {
   margin-right: 1em;
 }
 
-.btn-supp:hover, .btn-supp:focus {
-  background-color: #c4c4c4;
+.imagePanier {
+  max-height: 50px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.nomMeuble {
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.align {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.quantite {
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.quantityPanier {
+  color: #9356dc;
+}
+
+.quantityPanier:hover,
+.quantityPanier:focus {
+  color: #6f42a7;
 }
 /*# sourceMappingURL=style.css.map */

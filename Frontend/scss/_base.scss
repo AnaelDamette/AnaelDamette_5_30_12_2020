@@ -164,7 +164,27 @@ form {
 #btnRecycle > i {
     margin-right: 1em;
 }
-
-.btn-supp:hover, .btn-supp:focus {
-    background-color: $couleur-background - 40;
+.imagePanier {
+    max-height : 50px;
+    padding-left : 15px;
+    padding-right : 15px;    
+}
+.nomMeuble {
+    justify-content: space-between;
+    display : flex;
+}
+.align {
+    align-items: center;
+    display : flex;
+}
+.quantite {
+    justify-content:space-around;
+    display : flex;
+    }
+.quantityPanier {
+    color: $couleur-primaire;
+}
+.quantityPanier:hover,
+.quantityPanier:focus {
+    color: $couleur-primaire-alt;
 }

@@ -220,7 +220,6 @@ if (pageArticle) {
 
 //création bouton recycler
 let recyclePanier = document.getElementById("btnRecycle");
-console.log("Bouton recycler");
 //déclenchement bouton recycle uniquement sur la page panier
 if (recyclePanier) {
     recyclePanier.addEventListener('click', () => {
@@ -280,18 +279,20 @@ function getPanier() { //construction du panier
     
     //création du tableau avec les objets du local storage
     var tableauItems = Object.keys(cartItems).map(function(key) { return cartItems[key];});
+    let prixTotal = 0;
+    console.log(prixTotal);
+    
 
     // fonction affichage dans le panier des articles du local storage
     tableauItems.forEach(cartItems => {
-
         //création de la div contenant toutes les informations d'un article
         let cardBodyPanier = document.createElement('div');
         cardBodyPanier.setAttribute('class', 'row justify-content-between border border-dark');
-        document.getElementById('cardBodyPanier').insertBefore(cardBodyPanier, document.getElementById('boutonPaiement'));
+        document.getElementById('cardBodyPanier').insertBefore(cardBodyPanier, document.getElementById('divPrixTotal'));
 
         //création de la case Nom Meuble de l'article
         let nomMeubleItem = document.createElement("div");
-        nomMeubleItem.setAttribute('class', 'nomMeuble col-7 border-right border-dark');
+        nomMeubleItem.setAttribute('class', 'nomMeuble col-6 border-right border-dark');
         cardBodyPanier.appendChild(nomMeubleItem);
 
         // mise en place du nom du meuble
@@ -307,19 +308,31 @@ function getPanier() { //construction du panier
         imgMeuble.setAttribute("alt", 'une Image de notre meuble : ' + cartItems.name);
         imgMeuble.setAttribute('class', "imagePanier")
 
-        // mise en place du prix
-        let prixMeubleItem = document.createElement("div");
-        prixMeubleItem.setAttribute("class", "col-2 border-right align border-dark");
-        prixMeubleItem.textContent = cartItems.price + ' €';
-        cardBodyPanier.appendChild(prixMeubleItem);
-        
         // mise en place de la quantité
         let supprimerMeubleItem = document.createElement('div');
-        supprimerMeubleItem.setAttribute('class', 'quantite col-3 align ');
+        supprimerMeubleItem.setAttribute('class', 'quantite col-2 align border-right border-dark');
         supprimerMeubleItem.innerHTML = '<i class="quantityPanier fas fa-arrow-alt-circle-left"></i>' + cartItems.quantity+ '<i class="quantityPanier fas fa-arrow-alt-circle-right"></i>' + '<i class="quantityPanier fas fa-times-circle"></i>';
         cardBodyPanier.appendChild(supprimerMeubleItem);
 
+        // mise en place du prix
+        let prixMeubleItem = document.createElement("div");
+        prixMeubleItem.setAttribute("class", "quantite col-2 border-right align border-dark");
+        prixMeubleItem.textContent = cartItems.price + ' €';
+        cardBodyPanier.appendChild(prixMeubleItem);      
+        
+        let coloneTotalMeuble = document.createElement('div');
+        coloneTotalMeuble.setAttribute('class', 'quantite col-2 align totalMeuble');
+        cardBodyPanier.appendChild(coloneTotalMeuble);
+        let totalPrixMeuble = cartItems.price * cartItems.quantity;
+        totalPrixMeuble = parseFloat(totalPrixMeuble).toFixed(1);
+        coloneTotalMeuble.textContent = totalPrixMeuble + " €";    
+        prixTotal = parseFloat(prixTotal) + parseFloat(totalPrixMeuble);
+        
     });
+    let afficheTotal = document.getElementById('prixTotal');
+    afficheTotal.textContent = prixTotal+ ' €'; 
 }
 
+let prixTotal = document.getElementsByClassName('totalMeuble');
+console.log(typeof(prixTotal.value));
 onLoadFunction()

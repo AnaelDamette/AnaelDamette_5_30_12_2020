@@ -155,18 +155,47 @@ if (pageArticle) {
         optionVernis.setAttribute('name', 'varnish');
 
         // mise en place de la quantité à mettre dans le panier 
+
         let quantiteProduit = document.createElement('div');
+        quantiteProduit.setAttribute('class', "mt-2")
         formulaire.appendChild(quantiteProduit);
         let titleQuantiteProduit = document.createElement('label');
         quantiteProduit.appendChild(titleQuantiteProduit);
         titleQuantiteProduit.textContent = 'Quantité';
+
+        let moinsMeubleItem = document.createElement('div');
+        quantiteProduit.appendChild(moinsMeubleItem);
+        moinsMeubleItem.setAttribute('class', 'quantityPanier fas fa-arrow-alt-circle-left moinsMeuble formulaireProduit');
+
         let NbQuantiteProduit = document.createElement("input");
         quantiteProduit.appendChild(NbQuantiteProduit);
         NbQuantiteProduit.setAttribute('id', 'quantiteProduit');
-        NbQuantiteProduit.setAttribute('class', 'formulaireProduit');
+        NbQuantiteProduit.setAttribute('class', 'formulaireProduit quantity');
         NbQuantiteProduit.setAttribute('type', 'number');
+        NbQuantiteProduit.setAttribute('value', 1);
         NbQuantiteProduit.setAttribute('min', '1');
         NbQuantiteProduit.setAttribute('step', '1');
+
+        let plusMeubleItem = document.createElement('div');
+        quantiteProduit.appendChild(plusMeubleItem);
+        plusMeubleItem.setAttribute('class', 'quantityPanier fas fa-arrow-alt-circle-right plusMeuble formulaireProduit');
+
+         //construction du bouton moins
+         let btnMoinsMeubleItem = document.querySelector('.moinsMeuble');
+         btnMoinsMeubleItem.addEventListener('click', () => {
+             NbQuantiteProduit.value = parseInt(NbQuantiteProduit.value, 10) - 1;
+             NbQuantiteProduit.textContent = parseInt(NbQuantiteProduit.value, 10);
+             console.log(typeof(NbQuantiteProduit.value))
+         })
+ 
+         //construction du bouton plus
+         let btnPlusMeubleItem = document.querySelector('.plusMeuble');
+         btnPlusMeubleItem.addEventListener('click', () => {
+             NbQuantiteProduit.value = parseInt(NbQuantiteProduit.value, 10) + 1;
+             NbQuantiteProduit.textContent = parseInt(NbQuantiteProduit.value, 10);
+         })
+
+        
 
         //rajouter une fonction pour prendre la valeurQantiteProduit directement après la saisis de l'utilisateur!
         let valeurQuantiteProduit;
@@ -237,6 +266,7 @@ function onLoadFunction() {
         document.querySelector('.cart span').textContent = 0;
     }
 }
+let productNumbers = localStorage.getItem('cartNumbers');
 // Fonction : mettres les articles dans le local storage
 function setItems(article) {
     let cartItems = localStorage.getItem('articleInCart');
@@ -276,15 +306,13 @@ function getPanier() { //construction du panier
     //récupération du local Storatge
     let cartItems = localStorage.getItem('articleInCart');
     cartItems = JSON.parse(cartItems);
-    
-    //création du tableau avec les objets du local storage
-    var tableauItems = Object.keys(cartItems).map(function(key) { return cartItems[key];});
-    let prixTotal = 0;
-    console.log(prixTotal);
-    
 
+    //création du tableau avec les objets du local storage
+    var tableauItems = Object.keys(cartItems).map(function (key) { return cartItems[key]; });
+    let prixTotal = 0;
+    console.log(tableauItems);
     // fonction affichage dans le panier des articles du local storage
-    tableauItems.forEach(cartItems => {
+    tableauItems.forEach((cartItems, i) => {
         //création de la div contenant toutes les informations d'un article
         let cardBodyPanier = document.createElement('div');
         cardBodyPanier.setAttribute('class', 'row justify-content-between border border-dark');
@@ -298,9 +326,9 @@ function getPanier() { //construction du panier
         // mise en place du nom du meuble
         let textMeuble = document.createElement("div");
         nomMeubleItem.appendChild(textMeuble)
-        textMeuble.textContent = cartItems.name + ' Vernis : '+ cartItems.selectVarnish;
-        textMeuble.setAttribute("class" , "align")
-        
+        textMeuble.textContent = cartItems.name + ' Vernis : ' + cartItems.selectVarnish;
+        textMeuble.setAttribute("class", "align")
+
         // Mise en place de l'image
         let imgMeuble = document.createElement('img');
         nomMeubleItem.appendChild(imgMeuble);
@@ -309,30 +337,74 @@ function getPanier() { //construction du panier
         imgMeuble.setAttribute('class', "imagePanier")
 
         // mise en place de la quantité
-        let supprimerMeubleItem = document.createElement('div');
-        supprimerMeubleItem.setAttribute('class', 'quantite col-2 align border-right border-dark');
-        supprimerMeubleItem.innerHTML = '<i class="quantityPanier fas fa-arrow-alt-circle-left"></i>' + cartItems.quantity+ '<i class="quantityPanier fas fa-arrow-alt-circle-right"></i>' + '<i class="quantityPanier fas fa-times-circle"></i>';
-        cardBodyPanier.appendChild(supprimerMeubleItem);
+        let quantiteMeubleItem = document.createElement('div');
+        quantiteMeubleItem.setAttribute('class', 'quantite col-2 align border-right border-dark');
+        cardBodyPanier.appendChild(quantiteMeubleItem);
+        let moinsMeubleItem = document.createElement('div');
+        quantiteMeubleItem.appendChild(moinsMeubleItem);
+        moinsMeubleItem.setAttribute('class', 'quantityPanier fas fa-arrow-alt-circle-left moinsMeuble');
+        moinsMeubleItem.setAttribute('id', 'moins' + cartItems.name + cartItems.selectVarnish);
+        let textQuantiteMeubleItem = document.createElement('div');
+        textQuantiteMeubleItem.setAttribute = ('class', "quantityPanier align quantity");
+        quantiteMeubleItem.appendChild(textQuantiteMeubleItem);
+        textQuantiteMeubleItem.textContent = cartItems.quantity;
+        let plusMeubleItem = document.createElement('div');
+        quantiteMeubleItem.appendChild(plusMeubleItem);
+        plusMeubleItem.setAttribute('class', 'quantityPanier fas fa-arrow-alt-circle-right plusMeuble');
+        plusMeubleItem.setAttribute('id', 'plus' + cartItems.name + cartItems.selectVarnish);
+        let suppMeubleItem = document.createElement('div');
+        quantiteMeubleItem.appendChild(suppMeubleItem);
+        suppMeubleItem.setAttribute('class', 'quantityPanier fas fa-times-circle');
+        suppMeubleItem.setAttribute('id', 'supp' + cartItems.name + cartItems.selectVarnish);
+
+
+        //construction des boutons moins, plus, supp 
+        //construction bouton supp
+        let btnsuppMeubleItem = document.getElementById("supp" + cartItems.name + cartItems.selectVarnish);
+        btnsuppMeubleItem.addEventListener('click', () => {
+            console.log(i);
+            console.log(tableauItems[i]);
+            tableauItems.splice(i, 1);
+            console.log(cartItems, 'remove objet');
+            productNumbers = parseInt(productNumbers);
+        })
+        //construction du bouton moins
+        let btnMoinsMeubleItem = document.getElementById("moins" + cartItems.name + cartItems.selectVarnish);
+        btnMoinsMeubleItem.addEventListener('click', () => {
+            cartItems.quantity = parseInt(cartItems.quantity) - 1;
+            textQuantiteMeubleItem.textContent = cartItems.quantity;
+            console.log(cartItems.quantity, cartItems);
+        })
+
+        //construction du bouton plus
+        let btnPlusMeubleItem = document.getElementById("plus" + cartItems.name + cartItems.selectVarnish);
+        btnPlusMeubleItem.addEventListener('click', () => {
+            cartItems.quantity = parseInt(cartItems.quantity) + 1;
+            console.log(cartItems.quantity, cartItems);
+            textQuantiteMeubleItem.textContent = cartItems.quantity;
+        })
+
 
         // mise en place du prix
         let prixMeubleItem = document.createElement("div");
         prixMeubleItem.setAttribute("class", "quantite col-2 border-right align border-dark");
         prixMeubleItem.textContent = cartItems.price + ' €';
-        cardBodyPanier.appendChild(prixMeubleItem);      
-        
+        cardBodyPanier.appendChild(prixMeubleItem);
+
         let coloneTotalMeuble = document.createElement('div');
         coloneTotalMeuble.setAttribute('class', 'quantite col-2 align totalMeuble');
         cardBodyPanier.appendChild(coloneTotalMeuble);
         let totalPrixMeuble = cartItems.price * cartItems.quantity;
         totalPrixMeuble = parseFloat(totalPrixMeuble).toFixed(1);
-        coloneTotalMeuble.textContent = totalPrixMeuble + " €";    
+        coloneTotalMeuble.textContent = totalPrixMeuble + " €";
+        prixTotal = parseFloat(prixTotal).toFixed(1);
         prixTotal = parseFloat(prixTotal) + parseFloat(totalPrixMeuble);
-        
+
     });
     let afficheTotal = document.getElementById('prixTotal');
-    afficheTotal.textContent = prixTotal+ ' €'; 
+    afficheTotal.textContent = prixTotal + ' €';
+
 }
 
 let prixTotal = document.getElementsByClassName('totalMeuble');
-console.log(typeof(prixTotal.value));
 onLoadFunction()

@@ -149,7 +149,10 @@ form {
     margin-bottom : 1em;
 }
 .formulaireProduit {
-    margin-left : 1em;
+    margin-left : 0.7em;
+}
+#quantiteProduit {
+    width : 50px;
 }
 
 #btnRecycle {
@@ -187,4 +190,15 @@ form {
 .quantityPanier:hover,
 .quantityPanier:focus {
     color: $couleur-primaire-alt;
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button
+{
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number]
+{
+  -moz-appearance: textfield;
 }

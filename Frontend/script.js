@@ -172,9 +172,10 @@ if (pageArticle) {
         NbQuantiteProduit.setAttribute('id', 'quantiteProduit');
         NbQuantiteProduit.setAttribute('class', 'formulaireProduit quantity');
         NbQuantiteProduit.setAttribute('type', 'number');
-        NbQuantiteProduit.setAttribute('value', 1);
         NbQuantiteProduit.setAttribute('min', '1');
+        NbQuantiteProduit.setAttribute('value', 1)
         NbQuantiteProduit.setAttribute('step', '1');
+        NbQuantiteProduit.quantiteProduit = 1;
 
         let plusMeubleItem = document.createElement('div');
         quantiteProduit.appendChild(plusMeubleItem);
@@ -198,7 +199,7 @@ if (pageArticle) {
         
 
         //rajouter une fonction pour prendre la valeurQantiteProduit directement après la saisis de l'utilisateur!
-        let valeurQuantiteProduit;
+        let valeurQuantiteProduit = 1;
         NbQuantiteProduit.addEventListener("input", (e) => {
             valeurQuantiteProduit = e.target.value;
             valeurQuantiteProduit = parseFloat(valeurQuantiteProduit);
@@ -231,7 +232,7 @@ if (pageArticle) {
         //déclenchement bouton addtocart uniquement sur la page produit
         if (addToCart) {
             addToCart.addEventListener('click', (event) => {
-                event.preventDefault();
+                event.preventDefault();                
                 console.log("le bouton existe");
                 let vernis = document.getElementById("vernis").value;
                 console.log("bouton add to cart")
@@ -271,8 +272,7 @@ let productNumbers = localStorage.getItem('cartNumbers');
 function setItems(article) {
     let cartItems = localStorage.getItem('articleInCart');
     let NbQuantiteProduit = document.getElementById('quantiteProduit').value;
-    let productNumbers = localStorage.getItem('cartNumbers');
-    productNumbers = parseInt(productNumbers);
+    let productNumbers = parseInt(localStorage.getItem('cartNumbers'));
     NbQuantiteProduit = parseInt(NbQuantiteProduit);
     cartItems = JSON.parse(cartItems); // récupération de ce qu'il y a dans articleInCart (notre panier)
     if (cartItems != null) { // Si le panier n'est pas vide on le remplis
@@ -304,13 +304,12 @@ if (pagePanier) { getPanier() } //appel de la fonction uniquement sur la page pa
 
 function getPanier() { //construction du panier 
     //récupération du local Storatge
-    let cartItems = localStorage.getItem('articleInCart');
-    cartItems = JSON.parse(cartItems);
+    let cartItems = JSON.parse(localStorage.getItem('articleInCart'));
 
     //création du tableau avec les objets du local storage
     var tableauItems = Object.keys(cartItems).map(function (key) { return cartItems[key]; });
     let prixTotal = 0;
-    console.log(tableauItems);
+    console.log(tableauItems, cartItems);
     // fonction affichage dans le panier des articles du local storage
     tableauItems.forEach((cartItems, i) => {
         //création de la div contenant toutes les informations d'un article
@@ -355,25 +354,30 @@ function getPanier() { //construction du panier
         let suppMeubleItem = document.createElement('div');
         quantiteMeubleItem.appendChild(suppMeubleItem);
         suppMeubleItem.setAttribute('class', 'quantityPanier fas fa-times-circle');
-        suppMeubleItem.setAttribute('id', 'supp' + cartItems.name + cartItems.selectVarnish);
+        suppMeubleItem.setAttribute('id', 'supp' + " " + cartItems.name + " " + cartItems.selectVarnish);
 
 
         //construction des boutons moins, plus, supp 
         //construction bouton supp
-        let btnsuppMeubleItem = document.getElementById("supp" + cartItems.name + cartItems.selectVarnish);
+        let btnsuppMeubleItem = document.getElementById("supp" + " " + cartItems.name + " " + cartItems.selectVarnish);
         btnsuppMeubleItem.addEventListener('click', () => {
-            console.log(i);
-            console.log(tableauItems[i]);
-            tableauItems.splice(i, 1);
-            console.log(cartItems, 'remove objet');
-            productNumbers = parseInt(productNumbers);
+            let articleInCart = JSON.parse(localStorage.getItem('articleInCart'));
+            let productNumbers = parseInt(localStorage.getItem('cartNumbers'));
+            delete articleInCart[cartItems.name + " " + cartItems.selectVarnish];
+            localStorage.setItem('articleInCart', JSON.stringify(articleInCart));
+            localStorage.setItem('cartNumbers', productNumbers - 1)
+            document.location.reload();
+            
         })
         //construction du bouton moins
         let btnMoinsMeubleItem = document.getElementById("moins" + cartItems.name + cartItems.selectVarnish);
         btnMoinsMeubleItem.addEventListener('click', () => {
             cartItems.quantity = parseInt(cartItems.quantity) - 1;
             textQuantiteMeubleItem.textContent = cartItems.quantity;
-            console.log(cartItems.quantity, cartItems);
+            let articleInCart = JSON.parse(localStorage.getItem('articleInCart'));
+            articleInCart[cartItems.name + " " + cartItems.selectVarnish].quantity = cartItems.quantity;
+            localStorage.setItem('articleInCart', JSON.stringify(articleInCart));
+            document.location.reload();
         })
 
         //construction du bouton plus
@@ -382,6 +386,10 @@ function getPanier() { //construction du panier
             cartItems.quantity = parseInt(cartItems.quantity) + 1;
             console.log(cartItems.quantity, cartItems);
             textQuantiteMeubleItem.textContent = cartItems.quantity;
+            let articleInCart = JSON.parse(localStorage.getItem('articleInCart'));
+            articleInCart[cartItems.name + " " + cartItems.selectVarnish].quantity = cartItems.quantity;
+            localStorage.setItem('articleInCart', JSON.stringify(articleInCart));
+            document.location.reload();
         })
 
 
@@ -402,9 +410,10 @@ function getPanier() { //construction du panier
 
     });
     let afficheTotal = document.getElementById('prixTotal');
-    afficheTotal.textContent = prixTotal + ' €';
+    afficheTotal.textContent = prixTotal.toFixed(1) + ' €';
 
 }
+
 
 let prixTotal = document.getElementsByClassName('totalMeuble');
 onLoadFunction()

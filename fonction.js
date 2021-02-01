@@ -13,3 +13,14 @@ btnSubtrack.addEventListener('click', () =>{
 function addtract() {
 
 };
+
+
+
+let cartItemstest = JSON.parse(localStorage.getItem("articleInCart"));
+
+console.log(cartItemstest, Array.isArray(cartItemstest));
+//delete cartItemstest['Coffee Table Light Oak'];
+console.log(cartItemstest, typeof(cartItemstest));
+//cartItemstest['Coffee Table Dark Oak'].quantity = 4;
+
+localStorage.setItem('articleInCart', JSON.stringify(cartItemstest));

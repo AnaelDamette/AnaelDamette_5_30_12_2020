@@ -49,82 +49,73 @@
         </nav>
     </header>
     <!-- Page -->
-        <h1 class="d-flex justify-content-center border  rounded bg-light m-2 "> Mon Panier Orinoco</h1>
-        <div class="container-fluid">
-            <div class='row'>
-                <section class="col-6">
-                    <article class="row d-flex justify-content-between">
-                        <div class="card col-12 p-2 m-2" style="width: 18rem;">
-                            <a href="panier.html">
-                                <button class="btn btn-secondary" id="btnRecycle"><i class="fas fa-recycle"></i>Vider le
-                                    Panier</button>
-                            </a>
-                            <div class="card-body" id="cardBodyPanier">
-                                <h2 class="card-title">Mon panier</h2>
-                                <div class="row justify-content-between border border-dark">
-                                    <div class=" col-6 border-right border-dark"> Nom Meuble</div>
-                                    <div class="col-2 border-right border-dark"> Quantité</div>
-                                    <div class="col-2 border-right border-dark">Prix unité</div>
-                                    <div class="col-2"> total</div>
-                                </div>
-                                <div class="row border border-dark" id="divPrixTotal">
-                                    <div class="align p-3"> Prix Total : </div>
-                                    <div id='prixTotal' class="align"> 0 € </div>
-                                </div>
-                        </div>
-                    </article>
-                </section>
-                <section class="col-6 formulaire">
-                    <h2>Formulaire d'inscription</h2>
-                    <form class="needs-validation" novalidate>
-                        <div class="form-row">
-                            <div class="col-md-4 mb-3">
-                                <label for="prenom">Prénom</label>
-                                <input type="text" class="form-control" id="prenom" placeholder="Patrick" required>
-                                <div class="valid-feedback">Ok !</div>
-                                <div class="invalid-feedback">Valeur incorrecte</div>
+    <h1 class="d-flex justify-content-center border  rounded bg-light m-2 "> Mon Panier Orinoco</h1>
+    <div class="container-fluid">
+        <div class='row'>
+            <section class="col-6">
+                <article class="row d-flex justify-content-between">
+                    <div class="card col-12 p-2 m-2" style="width: 18rem;">
+                        <a href="panier.html">
+                            <button class="btn btn-secondary" id="btnRecycle"><i class="fas fa-recycle"></i>Vider le
+                                Panier</button>
+                        </a>
+                        <div class="card-body" id="cardBodyPanier">
+                            <h2 class="card-title">Mon panier</h2>
+                            <div class="row justify-content-between border border-dark">
+                                <div class=" col-6 border-right border-dark"> Nom Meuble</div>
+                                <div class="col-2 border-right border-dark"> Quantité</div>
+                                <div class="col-2 border-right border-dark">Prix unité</div>
+                                <div class="col-2"> total</div>
                             </div>
-                            <div class="col-md-4 mb-3">
-                                <label for="nom">Nom de famille</label>
-                                <input type="text" class="form-control" id="nom" placeholder="Thomas" required>
-                                <div class="valid-feedback">Ok !</div>
-                                <div class="invalid-feedback">Valeur incorrecte</div>
-                            </div>
-                            <div class="col-md-4 mb-3">
-                                <label for="email">E-mail</label>
-                                <input type="email" class="form-control" id="mail" placeholder="Adresse@mail.com"
-                                    required>
-                                <div class="valid-feedback">Ok !</div>
-                                <div class="invalid-feedback">Valeur incorrecte</div>
+                            <div class="row border border-dark" id="divPrixTotal">
+                                <div class="align p-3"> Prix Total : </div>
+                                <div id='prixTotal' class="align"> 0 € </div>
                             </div>
                         </div>
-                        <div class="form-row">
-                            <div class="col-md-6 mb-3">
-                                <label for="ville">Ville</label>
-                                <input type="text" class="form-control" id="ville" placeholder="Ville" required>
-                                <div class="valid-feedback">Ok !</div>
-                                <div class="invalid-feedback">Valeur incorrecte</div>
-                            </div>
-                            <div class="col-md-3 mb-3">
-                                <label for="pays">Pays</label>
-                                <input type="text" class="form-control" id="pays" placeholder="Pays" required>
-                                <div class="valid-feedback">Ok !</div>
-                                <div class="invalid-feedback">Valeur incorrecte</div>
-                            </div>
+                </article>
+            </section>
+            <section class="col-6 formulaire">
+                <h2>Formulaire d'inscription</h2>
+                <form class="needs-validation" novalidate>
+                    <div class="form-row">
+                        <div class="col-md-4 mb-3">
+                            <label for="prenom">Prénom</label>
+                            <input type="text" class="form-control" id="prenom" placeholder="Prénom" value="" pattern=\D+  required>
+                            <div class="valid-feedback">Ok !</div>
+                            <div class="invalid-feedback">Valeur incorrecte</div>
                         </div>
-                        <div class="form-group">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="cgu" required>
-                                <label class="form-check-label" for="cgu">J'accepte les conditions générales
-                                    d'utilisation et de vente</label>
-                                <div class="invalid-feedback">Vous devez accepter les CGU pour continuer</div>
-                            </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="nom">Nom de famille</label>
+                            <input type="text" class="form-control" id="nom" placeholder="Nom" value="" pattern=\D+ required>
+                            <div class="valid-feedback">Ok !</div>
+                            <div class="invalid-feedback">Valeur incorrecte</div>
                         </div>
-                        <button class="btn btn-primary" type="submit">Paiement</button>
-                    </form>
-                </section>
-            </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="email">E-mail</label>
+                            <input type="email" class="form-control" id="email" placeholder="Adresse@mail.com" value=""  required>
+                            <div class="valid-feedback">Ok !</div>
+                            <div class="invalid-feedback">Valeur incorrecte</div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-3 mb-3">
+                            <label for="ville">Ville</label>
+                            <input type="text" class="form-control" id="ville" placeholder="Ville" value="" pattern=\D+ required>
+                            <div class="valid-feedback">Ok !</div>
+                            <div class="invalid-feedback">Valeur incorrecte</div>
+                        </div>
+                        <div class="col-md-8 mb-3">
+                            <label for="pays">Adresse</label>
+                            <input type="text" class="form-control" id="address" placeholder="23 rue de la mouette" value=""  required>
+                            <div class="valid-feedback">Ok !</div>
+                            <div class="invalid-feedback">Valeur incorrecte</div>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" type="submit" value="submit">Paiement</button>
+                </form>
+            </section>
         </div>
+    </div>
     </main>
     <!--footer-->
     <footer class="footer navbar navbar-light bg-light">

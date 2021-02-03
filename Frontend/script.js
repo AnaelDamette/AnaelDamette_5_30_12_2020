@@ -41,7 +41,6 @@ let getAllMeuble = new Promise((resolve) => {
     lienServer.send();
 
 });
-getAllMeuble.then((data) => { console.log(data) });
 //verification :Promise : array (5)
 
 //création condition : charger la fonction showAllMeuble uniquement sur la page index.html grâce à l'id article

@@ -439,8 +439,12 @@ if (forms) {
         }       
         let contact = new objetContact(prenom, nom, address, ville, mail);
         let cartItems = JSON.parse(localStorage.getItem("articleInCart"));
-        console.log(cartItems);
         let products = [];
+        let commandeComplete = {
+            contact,
+            products,
+        };
+        console.log(cartItems);
         tableauItems.forEach((cartItems) => {
             products.push(cartItems._id)
         })
@@ -448,14 +452,14 @@ if (forms) {
         return new Promise((resolve) => {
             let post = new XMLHttpRequest();
             post.onload = function () {
-                if (this.readyState == XMLHttpRequest.DONE && this.status == 201){
-                    let reponseServeur = JSON.parse(this.responseText);
-                    sessionStorage.setItem("numero commande", reponseServeur.orderId);
-                    resolve(reponseServeur);
-                }
+                //if (this.readyState == XMLHttpRequest.DONE && this.status == 201){
+                    //let reponseServeur = JSON.parse(this.responseText);
+                   // sessionStorage.setItem("numero commande", reponseServeur.orderId);
+                   // resolve(reponseServeur);
+               // }
             }
             post.open("POST", url +"/"+ "order");
-            post.send(contact, products);
+            post.send(commandeComplete);
         })               
     })
 }

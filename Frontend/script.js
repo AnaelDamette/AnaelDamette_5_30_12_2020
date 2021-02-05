@@ -21,6 +21,7 @@ class objetContact {
 }
 var tableauItems;
 let article;
+let prixTotal = document.getElementById('prixTotal');
 // création de la fonction : obtenir les meubles
 //variable nouvelle promesse
 let getAllMeuble = new Promise((resolve) => {
@@ -315,7 +316,7 @@ if (pagePanier) { getPanier() } //appel de la fonction uniquement sur la page pa
 function getPanier() { //construction du panier 
     //récupération du local Storatge
     let cartItems = JSON.parse(localStorage.getItem('articleInCart'));
-    let prixTotal = 0;
+    prixTotal = 0;
 
     //création du tableau avec les objets du local storage
     if (cartItems) {
@@ -423,44 +424,49 @@ function getPanier() { //construction du panier
     }
     let afficheTotal = document.getElementById('prixTotal');
     afficheTotal.textContent = prixTotal.toFixed(1) + ' €';
+    sessionStorage.setItem('prixTotal', JSON.stringify(prixTotal.toFixed(1)));
 }
 let mail, prenom, nom, ville, address;
 // Validation du questionnaire
 let forms = document.querySelector(".needs-validation");
 if (forms) {
     forms.addEventListener('submit', (event) => {
-        
+
         event.preventDefault();
         if (formValidity(forms) === false) {
             event.stopPropagation();
             forms.classList.add('was-validated');
             console.log("le formulaire n'est pas envoyé")
             return
-        }       
+        }
         let contact = new objetContact(prenom, nom, address, ville, mail);
         let cartItems = JSON.parse(localStorage.getItem("articleInCart"));
         let products = [];
-        let commandeComplete = {
+        let commandeComplete = JSON.stringify({
             contact,
             products,
-        };
-        console.log(cartItems);
+        });
         tableauItems.forEach((cartItems) => {
             products.push(cartItems._id)
         })
-        console.log(contact, products);
-        return new Promise((resolve) => {
-            let post = new XMLHttpRequest();
-            post.onload = function () {
-                //if (this.readyState == XMLHttpRequest.DONE && this.status == 201){
-                    //let reponseServeur = JSON.parse(this.responseText);
-                   // sessionStorage.setItem("numero commande", reponseServeur.orderId);
-                   // resolve(reponseServeur);
-               // }
-            }
-            post.open("POST", url +"/"+ "order");
-            post.send(commandeComplete);
-        })               
+
+        function postCommandeComplete (commandeComplete) {
+            fetch(url+"/order", {
+                method:'POST',
+                headers:{
+                    'content-type':'application/json'
+                },
+                body:commandeComplete
+            }).then(response =>{
+                return response.json();
+            }).then (r =>{
+                sessionStorage.setItem('contact', JSON.stringify(r.contact));
+                sessionStorage.setItem('orderId',JSON.stringify(r.orderId));
+                sessionStorage.setItem('tableauItem', JSON.stringify(tableauItems));
+                window.location.replace("./commandeComplete.html")
+            })
+        }
+        postCommandeComplete(commandeComplete);      
     })
 }
 //fonction validation questionnaire
@@ -489,7 +495,35 @@ function formValidity() {
     } else {
         return true;
     }
-}
+};
 
-let prixTotal = document.getElementsByClassName('totalMeuble');
-onLoadFunction()
+// afficher la commande finis dans commandeComplete.html
+function afficherCommandeComplete() {
+    let tableauItems = JSON.parse(sessionStorage.getItem('tableauItem'));
+    let prixTotal = JSON.parse(sessionStorage.getItem('prixTotal'));
+    let orderId = JSON.parse(sessionStorage.getItem('orderId'));
+    let contact = JSON.parse(sessionStorage.getItem('contact'));
+    
+    tableauItems.forEach((cartItems) => {
+        let prixTotalArticle = parseFloat(cartItems.price).toFixed(1) * parseFloat(cartItems.quantity).toFixed(1);
+        console.log(cartItems, 'ici')
+        let ligneArticle = document.createElement('tr');
+        document.querySelector('.panierComplete').appendChild(ligneArticle);
+        ligneArticle.innerHTML = ' <th>' +cartItems.name + ' '+ cartItems.selectVarnish+ '</th>'+
+        '<th>' + cartItems.quantity + '</th>' +
+        '<th>' + cartItems.price + '</th>' +
+        '<th>' + prixTotalArticle + '</th>'
+    });
+    let afficherPrixTotal = document.querySelector('.prixTotalConfirmation');
+    afficherPrixTotal.textContent = prixTotal;
+    let afficherMessageConfirmation = document.querySelector('.messageConfirmation');
+    afficherMessageConfirmation.innerHTML = 'Merci, '+  contact.firstName+ ', '+ contact.lastName + ',<br>pour la commande N°: '+ orderId +
+    '<br>elle sera bien Livrée au '+ contact.address+ ' '+ contact.city +
+    '<br>Vous recevrez un mail de confirmation à : ' + contact.email;
+    sessionStorage.clear();
+    localStorage.clear();
+};
+onLoadFunction();
+if (document.querySelector('.messageConfirmation')){
+    afficherCommandeComplete();
+}

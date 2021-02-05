@@ -40,7 +40,6 @@ let getAllMeuble = new Promise((resolve) => {
     lienServer.open("GET", url);
     // Envois au client ce qu'il y a dans url
     lienServer.send();
-
 });
 //verification :Promise : array (5)
 
@@ -79,13 +78,10 @@ if (pageIndex) {
             btnCard.setAttribute('class', 'btn btn-primary btn-produitMeuble')
             btnCard.textContent = 'Voir ' + meuble.name;
             btnCard.setAttribute('href', 'article.html?' + meuble._id)
-
-
         })
     };
     showAllMeuble();
 }
-
 //récupération de l'id de l'objet selectionné
 let id = location.search.substring(1);
 var urlMeuble = url + "/" + id;
@@ -107,52 +103,43 @@ let getOneMeuble = new Promise((resolve, reject) => {
     // Envois au client ce qu'il y a dans url
     lienServerObjet.send();
 });
-
 //création condition : charger la fonction showOneMeuble uniquement sur la page article
 let pageArticle = document.getElementById("produitMeuble");
 if (pageArticle) {
     getOneMeuble.then((produitMeuble) => { showOneMeuble(produitMeuble) });
-
     function showOneMeuble(produitMeuble) {
         // construction carte pour le produit meuble
         let cardProduitMeuble = document.createElement("div");
         cardProduitMeuble.setAttribute('class', 'card col-12 p-2 m-2');
         document.getElementById("produitMeuble").appendChild(cardProduitMeuble);
-
         //mise en place de l'image dans la carte
         let imageProduitCard = document.createElement('img');
         cardProduitMeuble.appendChild(imageProduitCard);
         imageProduitCard.setAttribute('src', produitMeuble.imageUrl);
         imageProduitCard.setAttribute("class", 'card-img-top');
         imageProduitCard.setAttribute('alt', 'Une Image de notre meuble : ' + produitMeuble.name);
-
         //mise en place du texte sous l'image
         let bodyProduitCard = document.createElement('div');
         cardProduitMeuble.appendChild(bodyProduitCard);
         bodyProduitCard.setAttribute("class", 'cord-body');
-
         //mise en place du titre
         let titleProduitCard = document.createElement('h5');
         bodyProduitCard.appendChild(titleProduitCard);
         titleProduitCard.setAttribute('class', 'cord-title');
         titleProduitCard.textContent = produitMeuble.name;
-
         //mise en place de la description
         let descriptionProduitCard = document.createElement('p');
         bodyProduitCard.appendChild(descriptionProduitCard);
         descriptionProduitCard.setAttribute('class', 'card-text text-justify');
         descriptionProduitCard.textContent = produitMeuble.description;
-
         //mise en pace du prix
         let prixProduitCard = document.createElement('p');
         bodyProduitCard.appendChild(prixProduitCard);
         prixProduitCard.setAttribute('class', 'card-text text-justify');
         prixProduitCard.textContent = produitMeuble.price / 1000 + "€";
-
         //mise en place du formulaire
         let formulaire = document.createElement('form');
         bodyProduitCard.appendChild(formulaire);
-
         //mise en place de l'option
         let optionVarnish = document.createElement('div');
         formulaire.appendChild(optionVarnish);
@@ -164,20 +151,16 @@ if (pageArticle) {
         optionVernis.setAttribute('id', 'vernis');
         optionVernis.setAttribute('class', 'formulaireProduit');
         optionVernis.setAttribute('name', 'varnish');
-
         // mise en place de la quantité à mettre dans le panier 
-
         let quantiteProduit = document.createElement('div');
         quantiteProduit.setAttribute('class', "mt-2")
         formulaire.appendChild(quantiteProduit);
         let titleQuantiteProduit = document.createElement('label');
         quantiteProduit.appendChild(titleQuantiteProduit);
         titleQuantiteProduit.textContent = 'Quantité';
-
         let moinsMeubleItem = document.createElement('div');
         quantiteProduit.appendChild(moinsMeubleItem);
         moinsMeubleItem.setAttribute('class', 'quantityPanier fas fa-arrow-alt-circle-left moinsMeuble formulaireProduit');
-
         let NbQuantiteProduit = document.createElement("input");
         quantiteProduit.appendChild(NbQuantiteProduit);
         NbQuantiteProduit.setAttribute('id', 'quantiteProduit');
@@ -187,11 +170,9 @@ if (pageArticle) {
         NbQuantiteProduit.setAttribute('value', 1)
         NbQuantiteProduit.setAttribute('step', '1');
         NbQuantiteProduit.quantiteProduit = 1;
-
         let plusMeubleItem = document.createElement('div');
         quantiteProduit.appendChild(plusMeubleItem);
         plusMeubleItem.setAttribute('class', 'quantityPanier fas fa-arrow-alt-circle-right plusMeuble formulaireProduit');
-
         //construction du bouton moins
         let btnMoinsMeubleItem = document.querySelector('.moinsMeuble');
         btnMoinsMeubleItem.addEventListener('click', () => {
@@ -199,16 +180,12 @@ if (pageArticle) {
             NbQuantiteProduit.textContent = parseInt(NbQuantiteProduit.value, 10);
             console.log(typeof (NbQuantiteProduit.value))
         })
-
         //construction du bouton plus
         let btnPlusMeubleItem = document.querySelector('.plusMeuble');
         btnPlusMeubleItem.addEventListener('click', () => {
             NbQuantiteProduit.value = parseInt(NbQuantiteProduit.value, 10) + 1;
             NbQuantiteProduit.textContent = parseInt(NbQuantiteProduit.value, 10);
         })
-
-
-
         //rajouter une fonction pour prendre la valeurQantiteProduit directement après la saisis de l'utilisateur!
         let valeurQuantiteProduit = 1;
         NbQuantiteProduit.addEventListener("input", (e) => {
@@ -216,7 +193,6 @@ if (pageArticle) {
             valeurQuantiteProduit = parseFloat(valeurQuantiteProduit);
             console.log(valeurQuantiteProduit, typeof (valeurQuantiteProduit));
         });
-
         //création de la boucle foreach
         let selectionVernis = produitMeuble.varnish;
         selectionVernis.forEach(colorVernis => {
@@ -228,8 +204,6 @@ if (pageArticle) {
             couleurVernis.setAttribute('value', colorVernis);
             couleurVernis.textContent = colorVernis;
         });
-
-
         //mise en place du bouton
         let btnProduitCard = document.createElement("button")
         formulaire.appendChild(btnProduitCard);
@@ -237,7 +211,6 @@ if (pageArticle) {
         btnProduitCard.setAttribute('id', 'setLocalStorage');
         btnProduitCard.setAttribute('type', 'submit');
         btnProduitCard.textContent = 'Mettre au panier';
-
         //création bouton addtocart
         let addToCart = document.getElementById('setLocalStorage');
         //déclenchement bouton addtocart uniquement sur la page produit
@@ -294,7 +267,6 @@ function setItems(article) {
                 ...cartItems,
                 [article.name + ' ' + article.selectVarnish]: article
             }
-
         }
         cartItems[article.name + ' ' + article.selectVarnish].quantity += NbQuantiteProduit; // on ajoute la nouvelle quantité à l'objet
     } else { //on défini notre panier avec l'objet et la quantité à 1
@@ -308,16 +280,13 @@ function setItems(article) {
     //on ajoute au local storage notre nouvel articleInCart
     localStorage.setItem('articleInCart', JSON.stringify(cartItems));
 }
-
 // fONCTION GetPanier(), on récupère les objets contenu dans le locale storage pour les afficher
 let pagePanier = document.getElementById("cardBodyPanier");
 if (pagePanier) { getPanier() } //appel de la fonction uniquement sur la page panier
-
 function getPanier() { //construction du panier 
     //récupération du local Storatge
     let cartItems = JSON.parse(localStorage.getItem('articleInCart'));
     prixTotal = 0;
-
     //création du tableau avec les objets du local storage
     if (cartItems) {
         tableauItems = Object.keys(cartItems).map(function (key) { return cartItems[key]; });
@@ -328,25 +297,21 @@ function getPanier() { //construction du panier
             let cardBodyPanier = document.createElement('div');
             cardBodyPanier.setAttribute('class', 'row justify-content-between border border-dark');
             document.getElementById('cardBodyPanier').insertBefore(cardBodyPanier, document.getElementById('divPrixTotal'));
-
             //création de la case Nom Meuble de l'article
             let nomMeubleItem = document.createElement("div");
             nomMeubleItem.setAttribute('class', 'nomMeuble col-6 border-right border-dark');
             cardBodyPanier.appendChild(nomMeubleItem);
-
             // mise en place du nom du meuble
             let textMeuble = document.createElement("div");
             nomMeubleItem.appendChild(textMeuble)
             textMeuble.textContent = cartItems.name + ' Vernis : ' + cartItems.selectVarnish;
             textMeuble.setAttribute("class", "align")
-
             // Mise en place de l'image
             let imgMeuble = document.createElement('img');
             nomMeubleItem.appendChild(imgMeuble);
             imgMeuble.setAttribute("src", cartItems.imageUrl);
             imgMeuble.setAttribute("alt", 'une Image de notre meuble : ' + cartItems.name);
             imgMeuble.setAttribute('class', "imagePanier")
-
             // mise en place de la quantité
             let quantiteMeubleItem = document.createElement('div');
             quantiteMeubleItem.setAttribute('class', 'quantite col-2 align border-right border-dark');
@@ -367,8 +332,6 @@ function getPanier() { //construction du panier
             quantiteMeubleItem.appendChild(suppMeubleItem);
             suppMeubleItem.setAttribute('class', 'quantityPanier fas fa-times-circle');
             suppMeubleItem.setAttribute('id', 'supp' + " " + cartItems.name + " " + cartItems.selectVarnish);
-
-
             //construction des boutons moins, plus, supp 
             //construction bouton supp
             let btnsuppMeubleItem = document.getElementById("supp" + " " + cartItems.name + " " + cartItems.selectVarnish);
@@ -379,7 +342,6 @@ function getPanier() { //construction du panier
                 localStorage.setItem('articleInCart', JSON.stringify(articleInCart));
                 localStorage.setItem('cartNumbers', productNumbers - 1)
                 document.location.reload();
-
             })
             //construction du bouton moins
             let btnMoinsMeubleItem = document.getElementById("moins" + cartItems.name + cartItems.selectVarnish);
@@ -391,7 +353,6 @@ function getPanier() { //construction du panier
                 localStorage.setItem('articleInCart', JSON.stringify(articleInCart));
                 document.location.reload();
             })
-
             //construction du bouton plus
             let btnPlusMeubleItem = document.getElementById("plus" + cartItems.name + cartItems.selectVarnish);
             btnPlusMeubleItem.addEventListener('click', () => {
@@ -403,14 +364,11 @@ function getPanier() { //construction du panier
                 localStorage.setItem('articleInCart', JSON.stringify(articleInCart));
                 document.location.reload();
             })
-
-
             // mise en place du prix
             let prixMeubleItem = document.createElement("div");
             prixMeubleItem.setAttribute("class", "quantite col-2 border-right align border-dark");
             prixMeubleItem.textContent = cartItems.price + ' €';
             cardBodyPanier.appendChild(prixMeubleItem);
-
             let coloneTotalMeuble = document.createElement('div');
             coloneTotalMeuble.setAttribute('class', 'quantite col-2 align totalMeuble');
             cardBodyPanier.appendChild(coloneTotalMeuble);
@@ -419,56 +377,13 @@ function getPanier() { //construction du panier
             coloneTotalMeuble.textContent = totalPrixMeuble + " €";
             prixTotal = parseFloat(prixTotal).toFixed(1);
             prixTotal = parseFloat(prixTotal) + parseFloat(totalPrixMeuble);
-
         });
     }
     let afficheTotal = document.getElementById('prixTotal');
     afficheTotal.textContent = prixTotal.toFixed(1) + ' €';
     sessionStorage.setItem('prixTotal', JSON.stringify(prixTotal.toFixed(1)));
 }
-let mail, prenom, nom, ville, address;
-// Validation du questionnaire
-let forms = document.querySelector(".needs-validation");
-if (forms) {
-    forms.addEventListener('submit', (event) => {
-
-        event.preventDefault();
-        if (formValidity(forms) === false) {
-            event.stopPropagation();
-            forms.classList.add('was-validated');
-            console.log("le formulaire n'est pas envoyé")
-            return
-        }
-        let contact = new objetContact(prenom, nom, address, ville, mail);
-        let cartItems = JSON.parse(localStorage.getItem("articleInCart"));
-        let products = [];
-        let commandeComplete = JSON.stringify({
-            contact,
-            products,
-        });
-        tableauItems.forEach((cartItems) => {
-            products.push(cartItems._id)
-        })
-
-        function postCommandeComplete (commandeComplete) {
-            fetch(url+"/order", {
-                method:'POST',
-                headers:{
-                    'content-type':'application/json'
-                },
-                body:commandeComplete
-            }).then(response =>{
-                return response.json();
-            }).then (r =>{
-                sessionStorage.setItem('contact', JSON.stringify(r.contact));
-                sessionStorage.setItem('orderId',JSON.stringify(r.orderId));
-                sessionStorage.setItem('tableauItem', JSON.stringify(tableauItems));
-                window.location.replace("./commandeComplete.html")
-            })
-        }
-        postCommandeComplete(commandeComplete);      
-    })
-}
+let mail, prenom, nom, ville, address; //déclaration variable pour créer l'élément contact
 //fonction validation questionnaire
 function formValidity() {
     let noNumbers = /[0-9]/;
@@ -478,8 +393,6 @@ function formValidity() {
     nom = document.getElementById("nom").value;
     ville = document.getElementById("ville").value;
     address = document.getElementById("address").value;
-
-
     if (noNumbers.test(prenom) === true || prenom == ''
         || noNumbers.test(nom) === true || nom == ''
         || noNumbers.test(ville) === true || ville == '' || address == '') {
@@ -496,7 +409,47 @@ function formValidity() {
         return true;
     }
 };
-
+//Post la commande
+function postCommandeComplete (commandeComplete) {
+    fetch(url+"/order", {
+        method:'POST',
+        headers:{
+            'content-type':'application/json'
+        },
+        body:commandeComplete
+    }).then(response =>{
+        return response.json();
+    }).then (r =>{
+        sessionStorage.setItem('contact', JSON.stringify(r.contact));
+        sessionStorage.setItem('orderId',JSON.stringify(r.orderId));
+        sessionStorage.setItem('tableauItem', JSON.stringify(tableauItems));
+        window.location.replace("./commandeComplete.html")
+    })
+}
+// Validation du questionnaire
+let forms = document.querySelector(".needs-validation");
+if (forms) {
+    forms.addEventListener('submit', (event) => {
+        event.preventDefault();
+        if (formValidity(forms) === false) {
+            event.stopPropagation();
+            forms.classList.add('was-validated');
+            console.log("le formulaire n'est pas envoyé")
+            return
+        }
+        let contact = new objetContact(prenom, nom, address, ville, mail);
+        let cartItems = JSON.parse(localStorage.getItem("articleInCart"));
+        let products = [];
+        let commandeComplete = JSON.stringify({
+            contact,
+            products,
+        });
+        tableauItems.forEach((cartItems) => {
+            products.push(cartItems._id)
+        })        
+        postCommandeComplete(commandeComplete);      
+    })
+}
 // afficher la commande finis dans commandeComplete.html
 function afficherCommandeComplete() {
     let tableauItems = JSON.parse(sessionStorage.getItem('tableauItem'));

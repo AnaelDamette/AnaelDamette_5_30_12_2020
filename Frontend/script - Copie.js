@@ -1,5 +1,5 @@
 //création constant url pour plus de facilité à l'appeler
-const url = "http://localhost:3000/api/furniture";
+export const url = "http://localhost:3000/api/furniture";
 class meuble {
     constructor(name, price, imageUrl, selectVarnish, quantity, _id) {
         this.name = name;

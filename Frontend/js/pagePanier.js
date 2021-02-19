@@ -1,6 +1,6 @@
 export {ecouterBtnRecycle, onLoadFunction, getPanier, formValidity,postCommandeComplete  };
 export let tableauItems;
-const url = "http://localhost:3000/api/furniture";
+import {url} from '../script.js';
 
 let prixTotal = document.getElementById('prixTotal');
 function ecouterBtnRecycle() {
@@ -24,7 +24,6 @@ function onLoadFunction() {
         document.querySelector('.cart span').textContent = 0;
     }
 }
-let productNumbers = localStorage.getItem('cartNumbers');
 
 // fONCTION GetPanier(), on récupère les objets contenu dans le locale storage pour les afficher
 function getPanier() { //construction du panier 
@@ -159,7 +158,7 @@ function postCommandeComplete(commandeComplete) {
     fetch(url + "/order", {
         method: 'POST',
         headers: {
-            'content-type': 'application/json'
+            'Content-Type': 'application/json'
         },
         body: commandeComplete
     }).then(response => {

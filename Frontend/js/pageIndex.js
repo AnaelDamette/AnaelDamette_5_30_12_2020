@@ -1,6 +1,5 @@
 export {appelApi, showAllMeuble};
-//création constant url pour plus de facilité à l'appeler
-const url = "http://localhost:3000/api/furniture";
+import {url} from '../script.js';
 // création de la fonction : obtenir les meubles
 //variable nouvelle promesse
 let getAllMeuble;

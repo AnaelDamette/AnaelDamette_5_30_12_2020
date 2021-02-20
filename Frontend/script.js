@@ -43,7 +43,7 @@ let pagePanier = document.getElementById("cardBodyPanier");
 //appel des fonctions uniquement sur la page panier
 if (pagePanier) {
     getPanier()
-    ecouterBtnRecycle
+    ecouterBtnRecycle()
 }
 
 // Validation du questionnaire
@@ -58,7 +58,7 @@ if (forms) {
             return
         }
         let contact = new objetContact(prenom, nom, address, ville, mail);
-        let cartItems = JSON.parse(localStorage.getItem("articleInCart"));
+        //let cartItems = JSON.parse(localStorage.getItem("articleInCart"));
         let products = [];
         let commandeComplete = JSON.stringify({
             contact,
